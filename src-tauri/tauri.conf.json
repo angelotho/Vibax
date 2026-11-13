@@ -1,0 +1,88 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Vibax",
+  "version": "../package.json",
+  "identifier": "app.vibax.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Vibax",
+        "width": 1200,
+        "height": 780,
+        "minWidth": 960,
+        "minHeight": 640,
+        "center": true,
+        "decorations": false,
+        "shadow": true,
+        "backgroundColor": "#08060D",
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "script-src": "'self'",
+        "style-src": "'self' 'unsafe-inline'",
+        "font-src": "'self' data:",
+        "img-src": "'self' data: asset: http://asset.localhost https:",
+        "connect-src": "ipc: http://ipc.localhost"
+      },
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "$APPLOCALDATA/thumbs/**"
+        ]
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "publisher": "angelotho",
+    "copyright": "© 2026 angelotho. Uso não comercial (PolyForm Noncommercial 1.0.0).",
+    "category": "Video",
+    "shortDescription": "Downloads de vídeo rápidos, sem anúncios",
+    "longDescription": "Vibax é um aplicativo gratuito para Windows que analisa links de vídeo, mostra as qualidades realmente disponíveis e gerencia uma fila de downloads localmente, sem contas, anúncios ou rastreadores.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "resources": {
+      "tools/": "tools/",
+      "../LICENSE.md": "LICENSE.md",
+      "../THIRD-PARTY-NOTICES.md": "THIRD-PARTY-NOTICES.md"
+    },
+    "license": "PolyForm-Noncommercial-1.0.0",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": [
+          "PortugueseBR",
+          "English"
+        ],
+        "displayLanguageSelector": false,
+        "installerIcon": "icons/icon.ico",
+        "headerImage": "installer/header.bmp",
+        "sidebarImage": "installer/sidebar.bmp",
+        "startMenuFolder": "Vibax"
+      }
+    },
+    "homepage": "https://github.com/angelotho/Vibax"
+  },
+  "plugins": {}
+}

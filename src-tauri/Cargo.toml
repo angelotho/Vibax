@@ -1,0 +1,55 @@
+[package]
+name = "vibax"
+version = "1.0.0"
+description = "Vibax — gerenciador de downloads de vídeo para Windows"
+authors = ["angelotho"]
+license = "PolyForm-Noncommercial-1.0.0"
+repository = "https://github.com/angelotho/Vibax"
+edition = "2021"
+rust-version = "1.80"
+
+[lib]
+name = "vibax_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["protocol-asset"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-clipboard-manager = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["process", "io-util", "sync", "time", "rt-multi-thread", "macros", "fs"] }
+rusqlite = { version = "0.42", features = ["bundled"] }
+thiserror = "2"
+uuid = { version = "1", features = ["v4"] }
+url = "2"
+sha2 = "0.11"
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "stream"] }
+zip = { version = "9", default-features = false, features = ["deflate"] }
+futures-util = "0.3"
+log = "0.4"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_System_JobObjects",
+  "Win32_System_Threading",
+  "Win32_Storage_FileSystem",
+] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

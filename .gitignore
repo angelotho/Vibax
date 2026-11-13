@@ -1,0 +1,53 @@
+# Dependências
+node_modules/
+
+# Builds
+dist/
+dist-ssr/
+src-tauri/target/
+src-tauri/gen/
+*.tsbuildinfo
+
+# Componentes externos (baixados com `npm run fetch-binaries`; vão apenas no instalador)
+src-tauri/tools/
+
+# Testes e caches
+coverage/
+.vite/
+.cache/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Ambiente e segredos — nunca versionar
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+*.pfx
+*.p12
+*.cer
+*.crt
+*.jks
+*.keystore
+.tauri/
+
+# Ferramentas locais de desenvolvimento assistido
+.agents/
+.claude/
+.mcp.json
+CLAUDE.md
+
+# Editores e sistema
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini
