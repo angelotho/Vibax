@@ -13,6 +13,7 @@
     "core:window:allow-set-focus",
     "dialog:allow-open",
     "dialog:allow-ask",
-    "clipboard-manager:allow-read-text"
+    "clipboard-manager:allow-read-text",
+    "clipboard-manager:allow-write-text"
   ]
 }

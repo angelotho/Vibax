@@ -5,6 +5,13 @@ Todas as mudanças relevantes do Vibax são documentadas neste arquivo.
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto adota o
 [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [1.0.2] — 2026-11-15
+
+### Apoio ao projeto
+- Card "Curtiu o Vibax?" no rodapé da barra lateral, com atalho para doação via Pix. Pode ser dispensado e volta
+  após 14 dias; enquanto isso fica um botão discreto "Apoie o projeto".
+- Janela de doação com QR Code Pix (gerado localmente, sem internet), botão "Pix copia e cola" e cópia da chave.
+
 ## [1.0.0] — 2026-11-13
 
 Primeira versão pública.

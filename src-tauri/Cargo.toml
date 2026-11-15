@@ -1,6 +1,6 @@
 [package]
 name = "vibax"
-version = "1.0.0"
+version = "1.0.2"
 description = "Vibax — gerenciador de downloads de vídeo para Windows"
 authors = ["angelotho"]
 license = "PolyForm-Noncommercial-1.0.0"

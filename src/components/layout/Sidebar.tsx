@@ -1,4 +1,8 @@
-import { ArrowDownToLine, History, Layers, Settings2 } from "lucide-react"
+import { ArrowDownToLine, Heart, History, Layers, Settings2 } from "lucide-react"
+import { useState } from "react"
+
+import { DonateDialog } from "@/components/support/DonateDialog"
+import { isSupportCardSnoozed, snoozeSupportCard, SupportCard } from "@/components/support/SupportCard"
 
 import { formatSpeed } from "@/lib/format"
 import { cn } from "@/lib/utils"
@@ -16,6 +20,8 @@ export function Sidebar({ version }: { version?: string }) {
   const page = useUi((s) => s.page)
   const go = useUi((s) => s.go)
   const { active, pending, speed } = useQueueSummary()
+  const [donateOpen, setDonateOpen] = useState(false)
+  const [cardVisible, setCardVisible] = useState(() => !isSupportCardSnoozed())
 
   return (
     <nav aria-label="Navegação principal" className="flex w-[212px] shrink-0 flex-col bg-rail px-3 pb-3 pt-2">
@@ -77,8 +83,27 @@ export function Sidebar({ version }: { version?: string }) {
             {speed > 0 && <div className="tnum mt-1 pl-4 text-[12px] text-muted-foreground">{formatSpeed(speed)}</div>}
           </button>
         )}
+        {cardVisible ? (
+          <SupportCard
+            onDonate={() => setDonateOpen(true)}
+            onDismiss={() => {
+              snoozeSupportCard()
+              setCardVisible(false)
+            }}
+          />
+        ) : (
+        <button
+          type="button"
+          onClick={() => setDonateOpen(true)}
+          className="group flex h-9 w-full items-center gap-3 rounded-lg px-3 text-[13px] font-medium text-muted-foreground transition-colors duration-150 hover:bg-foreground/5 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring"
+        >
+          <Heart className="size-[16px] transition-colors group-hover:fill-primary group-hover:text-primary" strokeWidth={1.75} />
+          Apoie o projeto
+        </button>
+        )}
         {version && <div className="tnum px-3 text-[11px] text-muted-foreground/70">Vibax {version}</div>}
       </div>
+      <DonateDialog open={donateOpen} onOpenChange={setDonateOpen} />
     </nav>
   )
 }
